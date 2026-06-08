@@ -1,0 +1,1 @@
+# SPA_MODEL_STYLE
