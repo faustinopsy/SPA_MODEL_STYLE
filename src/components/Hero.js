@@ -1,35 +1,36 @@
 import { Component } from '../core/Component.js';
 import { FloatingIcons } from '../animations/FloatingIcons.js';
+import { icon } from '../utils/icons.js';
 
 const ICON_DATA = [
-  { emoji: '📸', color: '#E1306C', top: '17%', left: '11%' },
-  { emoji: '👍', color: '#1877F2', top: '38%', left: '24%' },
-  { emoji: '🐦', color: '#1DA1F2', top: '48%', left: '7%' },
-  { emoji: '❤️', color: '#E1306C', top: '65%', left: '15%' },
-  { emoji: '🎬', color: '#FF0000', top: 'auto', left: '4%', bottom: '8%' },
-  { emoji: '📧', color: '#a78bfa', top: '12%', right: '8%' },
-  { emoji: '✅', color: '#10b981', top: '35%', right: '27%' },
-  { emoji: '⚙️', color: '#3b82f6', top: '40%', right: '7%' },
-  { emoji: '📊', color: '#f59e0b', top: '62%', right: '16%' },
-  { emoji: '🎞️', color: '#60a5fa', top: 'auto', right: '4%', bottom: '8%' },
+  { iconName: 'camera',       color: '#E1306C', top: '17%', left: '11%' },
+  { iconName: 'thumbsUp',     color: '#1877F2', top: '38%', left: '24%' },
+  { iconName: 'twitter',      color: '#1DA1F2', top: '48%', left: '7%' },
+  { iconName: 'heart',        color: '#E1306C', top: '65%', left: '15%' },
+  { iconName: 'clapperboard', color: '#FF0000', top: 'auto', left: '4%', bottom: '8%' },
+  { iconName: 'mail',         color: '#a78bfa', top: '12%', right: '8%' },
+  { iconName: 'circleCheck',  color: '#10b981', top: '35%', right: '27%' },
+  { iconName: 'settings',     color: '#3b82f6', top: '40%', right: '7%' },
+  { iconName: 'barChart',     color: '#f59e0b', top: '62%', right: '16%' },
+  { iconName: 'film',         color: '#60a5fa', top: 'auto', right: '4%', bottom: '8%' },
 ];
 
 export class Hero extends Component {
   #floatingIcons = null;
 
   render() {
-    const iconsHTML = ICON_DATA.map((icon) => {
+    const iconsHTML = ICON_DATA.map((item) => {
       const styleParts = [];
-      if (icon.top    !== undefined) styleParts.push(`top:${icon.top}`);
-      if (icon.bottom !== undefined) styleParts.push(`bottom:${icon.bottom}`);
-      if (icon.left   !== undefined) styleParts.push(`left:${icon.left}`);
-      if (icon.right  !== undefined) styleParts.push(`right:${icon.right}`);
+      if (item.top    !== undefined) styleParts.push(`top:${item.top}`);
+      if (item.bottom !== undefined) styleParts.push(`bottom:${item.bottom}`);
+      if (item.left   !== undefined) styleParts.push(`left:${item.left}`);
+      if (item.right  !== undefined) styleParts.push(`right:${item.right}`);
       const style = styleParts.join(';');
 
       return `
         <div class="hero__floating-icon" style="${style}" aria-hidden="true">
-          <div class="hero__icon-bubble" style="box-shadow:0 8px 32px ${icon.color}40">
-            <span style="font-size:2rem;line-height:1;display:flex;align-items:center;justify-content:center;">${icon.emoji}</span>
+          <div class="hero__icon-bubble" style="box-shadow:0 8px 32px ${item.color}40">
+            ${icon(item.iconName, 32, item.color)}
           </div>
         </div>`;
     }).join('');
@@ -44,7 +45,7 @@ export class Hero extends Component {
         ${iconsHTML}
 
         <div class="hero__content">
-          <div class="section-badge">⚡ NEXT-GEN AI PLATFORM</div>
+          <div class="section-badge">${icon('zap', 14)} NEXT-GEN AI PLATFORM</div>
           <h1 class="hero__title">
             Unleash Your<br>
             <span class="gradient-text">Creative Potential</span>
@@ -54,7 +55,7 @@ export class Hero extends Component {
             and social media content — in seconds.
           </p>
           <div class="hero__cta">
-            <button class="btn-primary">✨ Get Started Now</button>
+            <button class="btn-primary">${icon('sparkles', 16)} Get Started Now</button>
             <button class="btn-secondary">Explore Features →</button>
           </div>
         </div>

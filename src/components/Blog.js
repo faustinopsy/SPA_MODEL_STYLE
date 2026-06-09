@@ -1,7 +1,9 @@
 import { Component } from '../core/Component.js';
+import { icon, largeIcon } from '../utils/icons.js';
 
 const FEATURED_POST = {
-  emoji: '🎬',
+  iconName: 'clapperboard',
+  color: '#ec4899',
   tag: 'Insights',
   readTime: '5 min read',
   title: 'The Evolution of Action Cinematography in Modern Films',
@@ -9,9 +11,9 @@ const FEATURED_POST = {
 };
 
 const SIDE_POSTS = [
-  { emoji: '🏰', tag: 'Insights', readTime: '5 min read', title: 'Building Immersive Fantasy Worlds for Visual Storytelling' },
-  { emoji: '🤖', tag: 'Insights', readTime: '5 min read', title: 'The Rise of Cyberpunk Aesthetics in Digital Media' },
-  { emoji: '✨', tag: 'Insights', readTime: '5 min read', title: 'Getting Started with AI Image Generation' },
+  { iconName: 'castle',       color: '#a78bfa', tag: 'Insights', readTime: '5 min read', title: 'Building Immersive Fantasy Worlds for Visual Storytelling' },
+  { iconName: 'bot',          color: '#3b82f6', tag: 'Insights', readTime: '5 min read', title: 'The Rise of Cyberpunk Aesthetics in Digital Media' },
+  { iconName: 'sparkles',     color: '#f59e0b', tag: 'Insights', readTime: '5 min read', title: 'Getting Started with AI Image Generation' },
 ];
 
 const TICKER_ITEMS = [
@@ -33,8 +35,8 @@ export class Blog extends Component {
 
     const sidePostsHTML = SIDE_POSTS.map(p => `
       <div class="blog__card-small">
-        <div class="blog__card-small-image">
-          <span>${p.emoji}</span>
+        <div class="blog__card-small-image" style="color:${p.color};">
+          <span style="font-size:1.75rem;">${largeIcon(p.iconName, p.color)}</span>
         </div>
         <div class="blog__card-small-body">
           <div class="blog__tag">${p.tag} · ${p.readTime}</div>
@@ -47,15 +49,15 @@ export class Blog extends Component {
         <div class="glow-blob" style="top:-10%;left:20%;width:400px;height:400px;background:var(--secondary);"></div>
         <div class="container">
           <div class="blog__header sr-hidden">
-            <div class="section-badge">📝 LATEST INSIGHTS</div>
+            <div class="section-badge">${icon('penLine', 14)} LATEST INSIGHTS</div>
             <h2>From Our Blog</h2>
             <p>Stay up to date with the latest AI trends, tutorials and product updates.</p>
           </div>
 
           <div class="blog__grid">
             <div class="blog__featured sr-left">
-              <div class="blog__featured-image">
-                <span>${FEATURED_POST.emoji}</span>
+              <div class="blog__featured-image" style="color:${FEATURED_POST.color};">
+                <span style="font-size:3rem;">${largeIcon(FEATURED_POST.iconName, FEATURED_POST.color)}</span>
               </div>
               <div class="blog__featured-body">
                 <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.75rem;">

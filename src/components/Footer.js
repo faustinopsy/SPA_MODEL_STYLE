@@ -1,4 +1,5 @@
 import { Component } from '../core/Component.js';
+import { icon } from '../utils/icons.js';
 
 export class Footer extends Component {
   render() {
@@ -14,8 +15,8 @@ export class Footer extends Component {
               </p>
               <div class="footer__socials">
                 <a href="#" class="footer__social-btn" aria-label="Facebook">f</a>
-                <a href="#" class="footer__social-btn" aria-label="Twitter">𝕏</a>
-                <a href="#" class="footer__social-btn" aria-label="Instagram">📸</a>
+                <a href="#" class="footer__social-btn" aria-label="Twitter">${icon('twitter', 16, 'currentColor')}</a>
+                <a href="#" class="footer__social-btn" aria-label="Instagram">${icon('instagram', 16, 'currentColor')}</a>
                 <a href="#" class="footer__social-btn" aria-label="LinkedIn">in</a>
               </div>
             </div>
@@ -35,7 +36,7 @@ export class Footer extends Component {
             <div class="footer__col">
               <h4>Company</h4>
               <nav class="footer__links">
-                <a href="#">Terms & Conditions</a>
+                <a href="#">Terms &amp; Conditions</a>
                 <a href="#">About Us</a>
                 <a href="#">Privacy Policy</a>
               </nav>
@@ -44,15 +45,15 @@ export class Footer extends Component {
             <div class="footer__col">
               <h4>Contact</h4>
               <div class="footer__contact-item">
-                <span>📍</span>
+                ${icon('mapPin', 14, 'var(--text-muted)')}
                 <span>123 AI Street, Tech City, TC 12345</span>
               </div>
               <div class="footer__contact-item">
-                <span>📞</span>
+                ${icon('phone', 14, 'var(--text-muted)')}
                 <span>+1 (234) 567-890</span>
               </div>
               <div class="footer__contact-item">
-                <span>✉️</span>
+                ${icon('mail', 14, 'var(--text-muted)')}
                 <span>support@reelease.ai</span>
               </div>
             </div>

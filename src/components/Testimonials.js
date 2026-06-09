@@ -1,5 +1,6 @@
 import { Component } from '../core/Component.js';
 import { TestimonialsMarquee } from '../animations/TestimonialsMarquee.js';
+import { icon } from '../utils/icons.js';
 
 const TESTIMONIALS = [
   { name: 'Michael Carter',  role: 'Social Media Creator',     initial: 'M', text: 'I use this platform daily for generating Instagram reels and creative visuals. The prompts work amazingly well, and the output quality is far better than many other AI tools I have tried.' },
@@ -22,10 +23,12 @@ const AVATAR_COLORS = [
   'linear-gradient(135deg,#a78bfa,#ec4899)',
 ];
 
+const STARS = Array(5).fill(icon('star', 14, '#fbbf24', '#fbbf24')).join('');
+
 function cardHTML(t, i) {
   return `
     <div class="testimonial-card">
-      <div class="testimonial-card__stars">★★★★★</div>
+      <div class="testimonial-card__stars">${STARS}</div>
       <p class="testimonial-card__text">"${t.text}"</p>
       <div class="testimonial-card__author">
         <div class="testimonial-card__avatar" style="background:${AVATAR_COLORS[i % AVATAR_COLORS.length]}">
@@ -47,7 +50,6 @@ export class Testimonials extends Component {
     const row1 = TESTIMONIALS.slice(0, half);
     const row2 = TESTIMONIALS.slice(half);
 
-    // Duplicar para loop contínuo
     const row1HTML = [...row1, ...row1].map((t, i) => cardHTML(t, i)).join('');
     const row2HTML = [...row2, ...row2].map((t, i) => cardHTML(t, i)).join('');
 
@@ -55,7 +57,7 @@ export class Testimonials extends Component {
       <section class="testimonials" id="testimonials">
         <div class="container">
           <div class="testimonials__header sr-hidden">
-            <div class="section-badge">❤️ WALL OF LOVE</div>
+            <div class="section-badge">${icon('heart', 14, '#ef4444', '#ef4444')} WALL OF LOVE</div>
             <h2>Loved by Creators Everywhere</h2>
             <p>Join thousands of creators who are already using Reelease AI to supercharge their content.</p>
           </div>

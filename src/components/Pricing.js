@@ -1,4 +1,5 @@
 import { Component } from '../core/Component.js';
+import { icon } from '../utils/icons.js';
 
 const PLANS = [
   {
@@ -7,7 +8,7 @@ const PLANS = [
     desc: 'Get started with basic AI features.',
     price: '$0',
     credits: '50 Credits',
-    icon: '🚀',
+    iconName: 'rocket',
     iconBg: 'linear-gradient(135deg,#60a5fa,#22d3ee)',
     glowColor: '#a78bfa',
     features: ['50 Credits', 'Text To Image', 'Image To Image', 'Video Motion', 'Images To Video', 'Text To Video'],
@@ -20,7 +21,7 @@ const PLANS = [
     desc: 'Advanced features for power users.',
     price: '$29',
     credits: '500 Credits',
-    icon: '⚡',
+    iconName: 'zap',
     iconBg: 'linear-gradient(135deg,#3b82f6,#a78bfa)',
     glowColor: '#3b82f6',
     features: ['500 Credits', 'Text To Image', 'Image To Image', 'Video Motion', 'Images To Video', 'Text To Video'],
@@ -33,7 +34,7 @@ const PLANS = [
     desc: 'Unlimited access for teams.',
     price: '$99',
     credits: '2000 Credits',
-    icon: '🏢',
+    iconName: 'building',
     iconBg: 'linear-gradient(135deg,#f59e0b,#ef4444)',
     glowColor: '#f59e0b',
     features: ['2000 Credits', 'Text To Image', 'Image To Image', 'Video Motion', 'Images To Video', 'Text To Video'],
@@ -47,7 +48,7 @@ export class Pricing extends Component {
     const cardsHTML = PLANS.map((plan, i) => `
       <div class="pricing-card${plan.featured ? ' pricing-card--featured' : ''} sr-hidden sr-delay-${i + 1}">
         <div class="pricing-card__glow" style="background:${plan.glowColor};"></div>
-        <div class="pricing-card__icon" style="background:${plan.iconBg};">${plan.icon}</div>
+        <div class="pricing-card__icon" style="background:${plan.iconBg};">${icon(plan.iconName, 22, '#fff')}</div>
         <div class="pricing-card__name">${plan.name}</div>
         <div class="pricing-card__desc">${plan.desc}</div>
         <div class="pricing-card__price">
@@ -57,7 +58,7 @@ export class Pricing extends Component {
         <div class="pricing-card__features">
           ${plan.features.map(f => `
             <div class="pricing-card__feature">
-              <div class="pricing-card__check">✓</div>
+              <div class="pricing-card__check">${icon('check', 12, '#10b981')}</div>
               <span>${f}</span>
             </div>`).join('')}
         </div>
@@ -72,7 +73,7 @@ export class Pricing extends Component {
         <div class="container">
           <div class="pricing__inner">
             <div class="pricing__left sr-left">
-              <div class="section-badge">💰 PRICING</div>
+              <div class="section-badge">${icon('dollarSign', 14)} PRICING</div>
               <h2>Simple,<br>Transparent Pricing</h2>
               <p>Choose the plan that fits your needs. No hidden fees, cancel anytime.</p>
             </div>

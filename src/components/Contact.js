@@ -1,4 +1,5 @@
 import { Component } from '../core/Component.js';
+import { icon } from '../utils/icons.js';
 
 export class Contact extends Component {
   render() {
@@ -8,21 +9,21 @@ export class Contact extends Component {
         <div class="container">
           <div class="contact__inner">
             <div class="contact__info sr-left">
-              <div class="section-badge">✉️ GET IN TOUCH</div>
+              <div class="section-badge">${icon('mail', 14)} GET IN TOUCH</div>
               <h2>Have Questions?<br>We Have Answers</h2>
               <p>Our support team is available around the clock to help you with anything you need.</p>
               <div class="contact__methods">
                 <div class="contact__method">
-                  <div class="contact__method-icon contact__method-icon--email">📧</div>
+                  <div class="contact__method-icon contact__method-icon--email">${icon('mail', 22, '#3b82f6')}</div>
                   <div>
                     <div class="contact__method-label">Email Us</div>
                     <div class="contact__method-value">hello@reelease.ai</div>
                   </div>
                 </div>
                 <div class="contact__method">
-                  <div class="contact__method-icon contact__method-icon--chat">💬</div>
+                  <div class="contact__method-icon contact__method-icon--chat">${icon('msgCircle', 22, '#10b981')}</div>
                   <div>
-                    <div class="contact__method-label">Available 24/7</div>
+                    <div class="contact__method-label">Live Chat</div>
                     <div class="contact__method-value">Available 24/7</div>
                   </div>
                 </div>
@@ -47,7 +48,7 @@ export class Contact extends Component {
                 <textarea id="contactMessage" name="message" placeholder="Tell us more about your inquiry..."></textarea>
               </div>
               <button type="submit" class="btn-primary">
-                <span id="submitLabel">Send Message ✈️</span>
+                <span id="submitLabel">${icon('send', 16, '#fff')} Send Message</span>
               </button>
             </form>
           </div>
@@ -65,13 +66,14 @@ export class Contact extends Component {
 
     form.addEventListener('submit', e => {
       e.preventDefault();
-      label.textContent = 'Sending...';
+      label.innerHTML = 'Sending...';
 
-      // Simulação de envio
       setTimeout(() => {
-        label.textContent = '✅ Message Sent!';
+        label.innerHTML = `${icon('circleCheck', 16, '#10b981')} Message Sent!`;
         form.reset();
-        setTimeout(() => { label.textContent = 'Send Message ✈️'; }, 3000);
+        setTimeout(() => {
+          label.innerHTML = `${icon('send', 16, '#fff')} Send Message`;
+        }, 3000);
       }, 1500);
     });
   }

@@ -1,0 +1,73 @@
+.contact { position: relative; padding: 6rem 0; }
+.contact__inner {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+@media (max-width: 768px) { .contact__inner { flex-direction: column; } }
+.contact__info { flex: 1; }
+.contact__info h2 {
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.15;
+}
+.contact__info p { font-size: 1rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.7; }
+.contact__methods { display: flex; flex-direction: column; gap: 1rem; }
+.contact__method {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.contact__method:hover { border-color: rgba(59,130,246,0.3); transform: translateX(4px); }
+.contact__method-icon {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact__method-icon--email { background: rgba(59,130,246,0.15); }
+.contact__method-icon--chat  { background: rgba(16,185,129,0.15); }
+.contact__method-label { font-size: 0.875rem; font-weight: 700; margin-bottom: 0.1rem; }
+.contact__method-value { font-size: 0.8rem; color: var(--text-muted); }
+.contact__form {
+  flex: 1;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-group label { font-size: 0.8rem; font-weight: 600; color: var(--text-muted); }
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  font-size: 0.9rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s;
+  resize: none;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.12);
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+.form-group textarea { min-height: 130px; }
+.contact__form .btn-primary { justify-content: center; gap: 0.5rem; }

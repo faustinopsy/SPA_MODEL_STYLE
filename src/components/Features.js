@@ -1,12 +1,13 @@
 import { Component }      from '../core/Component.js';
 import { StickyFeatures } from '../animations/StickyFeatures.js';
+import { icon, largeIcon } from '../utils/icons.js';
 
 const FEATURES = [
   {
     number: '01',
     title: 'Text to Image',
     desc: 'Transform your words into stunning, high-resolution visuals instantly using state-of-the-art AI models.',
-    emoji: '🖼️',
+    iconName: 'image',
     color: '#3b82f6',
     bg: 'linear-gradient(135deg,rgba(59,130,246,0.18),rgba(59,130,246,0.05))',
   },
@@ -14,7 +15,7 @@ const FEATURES = [
     number: '02',
     title: 'Images to Image',
     desc: 'Engage with our intelligent AI that understands context and provides accurate, human-like responses.',
-    emoji: '🔄',
+    iconName: 'refreshCw',
     color: '#a78bfa',
     bg: 'linear-gradient(135deg,rgba(167,139,250,0.18),rgba(167,139,250,0.05))',
   },
@@ -22,7 +23,7 @@ const FEATURES = [
     number: '03',
     title: 'Text to Video',
     desc: 'Create cinematic, high-quality videos from simple text prompts in just a few clicks.',
-    emoji: '🎬',
+    iconName: 'clapperboard',
     color: '#ec4899',
     bg: 'linear-gradient(135deg,rgba(236,72,153,0.18),rgba(236,72,153,0.05))',
   },
@@ -30,7 +31,7 @@ const FEATURES = [
     number: '04',
     title: 'Image to Video',
     desc: 'Bring your still images to life — animate photos and artwork into fluid, high-quality video clips with AI.',
-    emoji: '🎞️',
+    iconName: 'film',
     color: '#f59e0b',
     bg: 'linear-gradient(135deg,rgba(245,158,11,0.18),rgba(245,158,11,0.05))',
   },
@@ -38,7 +39,7 @@ const FEATURES = [
     number: '05',
     title: 'Video Motion',
     desc: 'Add dynamic motion effects, transitions, and cinematic camera moves to any video with a single prompt.',
-    emoji: '🎥',
+    iconName: 'video',
     color: '#10b981',
     bg: 'linear-gradient(135deg,rgba(16,185,129,0.18),rgba(16,185,129,0.05))',
   },
@@ -48,8 +49,6 @@ export class Features extends Component {
   #sticky = null;
 
   render() {
-    // Cada card é envolto num .feature-card-wrapper com position:absolute;inset:0
-    // Isso faz todos ocuparem EXATAMENTE o mesmo espaço — sobrepostos
     const cardsHTML = FEATURES.map((f, i) => `
       <div class="feature-card-wrapper" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:${i === 0 ? '1' : '0'};transform:${i === 0 ? 'scale(1)' : 'translateY(800px)'};will-change:transform,opacity;">
         <div class="feature-card" style="background:${f.bg}; --card-glow:${f.color}">
@@ -65,7 +64,7 @@ export class Features extends Component {
           </div>
           <div class="feature-card__image" style="background:${f.bg};">
             <div class="feature-card__image-placeholder">
-              <span>${f.emoji}</span>
+              <span style="color:${f.color};">${largeIcon(f.iconName, f.color)}</span>
             </div>
           </div>
         </div>
@@ -79,39 +78,25 @@ export class Features extends Component {
     return `
       <section class="features" id="features">
 
-        <!-- blobs de fundo -->
         <div class="glow-blob" style="top:0;right:-200px;width:500px;height:500px;background:var(--primary);"></div>
         <div class="glow-blob" style="top:0;right:-200px;width:200px;height:200px;background:var(--secondary);animation-delay:1s;"></div>
         <div class="glow-blob" style="bottom:-900px;left:-200px;width:600px;height:600px;background:var(--primary);animation-delay:2s;"></div>
 
-        <!--
-          O truque do sticky:
-          Este div tem height=420vh → cria espaço de scroll para o efeito.
-          O filho .features__sticky-wrapper é position:sticky;top:0;height:100vh
-          → ele FICA PARADO enquanto o pai rola, dando controle via scrollY.
-        -->
         <div class="features__scroll-container">
 
           <div class="features__sticky-wrapper">
 
-            <!-- Cabeçalho fixo acima dos cards -->
             <div class="features__header sr-hidden">
-              <div class="section-badge">⚡ POWERFUL CAPABILITIES</div>
+              <div class="section-badge">${icon('zap', 14)} POWERFUL CAPABILITIES</div>
               <h2>Everything You Need to Create Content</h2>
               <p>The all-in-one AI platform to create stunning images, videos,
                 and social media content — in seconds.</p>
             </div>
 
-            <!--
-              Viewport dos cards: position:relative + overflow:hidden
-              Todos os .feature-card-wrapper têm position:absolute;inset:0
-              → ficam empilhados no mesmo lugar, controlados por JS
-            -->
             <div class="features__cards-viewport">
               ${cardsHTML}
             </div>
 
-            <!-- Dots indicadores -->
             <div class="features__progress">${dotsHTML}</div>
 
           </div>
@@ -125,7 +110,6 @@ export class Features extends Component {
     this.#sticky.init();
     this._addCleanup(() => this.#sticky.destroy());
 
-    // Sincronizar dots com o progresso
     this._setupDots();
   }
 

@@ -1,4 +1,5 @@
 import { Component } from '../core/Component.js';
+import { icon } from '../utils/icons.js';
 
 const FAQS = [
   {
@@ -41,7 +42,7 @@ export class FAQ extends Component {
       <div class="faq-item sr-hidden sr-delay-${Math.min(i + 1, 6)}" data-faq="${i}">
         <button class="faq-item__trigger" aria-expanded="false">
           <span>${item.q}</span>
-          <span class="faq-item__icon" aria-hidden="true">+</span>
+          <span class="faq-item__icon" aria-hidden="true">${icon('plus', 14, 'currentColor')}</span>
         </button>
         <div class="faq-item__body" role="region">
           <div class="faq-item__answer">${item.a}</div>
@@ -54,7 +55,7 @@ export class FAQ extends Component {
         <div class="container">
           <div class="faq__inner">
             <div class="faq__header sr-hidden">
-              <div class="section-badge">❓ COMMON QUESTIONS</div>
+              <div class="section-badge">${icon('helpCircle', 14)} COMMON QUESTIONS</div>
               <h2>Frequently Asked Questions</h2>
               <p>Everything you need to know about Reelease AI. Can't find the answer? Contact our team.</p>
             </div>
@@ -78,13 +79,11 @@ export class FAQ extends Component {
       trigger.addEventListener('click', () => {
         const isOpen = item.classList.contains('open');
 
-        // Fechar todos
         items.forEach(i => {
           i.classList.remove('open');
           i.querySelector('.faq-item__trigger').setAttribute('aria-expanded', 'false');
         });
 
-        // Abrir o clicado se estava fechado
         if (!isOpen) {
           item.classList.add('open');
           trigger.setAttribute('aria-expanded', 'true');
